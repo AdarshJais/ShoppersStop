@@ -74,9 +74,9 @@ Rating.defaultProps = {
 };
 
 //If we want to strickly add types of props, if not then no required
-Rating.propTypes = {
-  value: PropTypes.number.isRequired,
-  text: PropTypes.string.isRequired,
-  color: PropTypes.string,
-};
+// Rating.propTypes = {
+//   value: PropTypes.number.isRequired,
+//   text: PropTypes.string.isRequired,
+//   color: PropTypes.string,
+// };
 export default Rating;
