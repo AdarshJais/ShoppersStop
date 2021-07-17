@@ -1,10 +1,15 @@
 import express from 'express';
 import dotenv from 'dotenv';
-const app = express();
+import ConnectDB from './config/db.js';
+import colors from 'colors';
+
 //we strickly need to us "products.js" and not simply product what we do in frontend
 import products from './data/products.js';
 
+const app = express();
 dotenv.config();
+
+ConnectDB();
 
 app.get('/', (req, res) => {
   res.send('Api is running/....');
@@ -23,5 +28,7 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(
   PORT,
-  console.log(`server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
+  console.log(
+    `server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
+  )
 );
