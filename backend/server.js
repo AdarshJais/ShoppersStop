@@ -2,27 +2,23 @@ import express from 'express';
 import dotenv from 'dotenv';
 import ConnectDB from './config/db.js';
 import colors from 'colors';
-
-//we strickly need to us "products.js" and not simply product what we do in frontend
-import products from './data/products.js';
-
+//we strickly need to us "fileName.js" and not simply product what we do in frontend
+//import products from './data/products.js';
+import productRoutes from './routes/productRoutes.js';
+import { notFound, errorHandler } from './middleWare/errorMiddleWare.js';
 const app = express();
 dotenv.config();
-
 ConnectDB();
 
 app.get('/', (req, res) => {
-  res.send('Api is running/....');
+  res.send('Api is running....');
 });
 
-app.get('/api/products', (req, res) => {
-  res.json(products);
-});
+app.use('/api/products', productRoutes);
 
-app.get('/api/products/:id', (req, res) => {
-  const product = products.find((p) => p._id === req.params.id);
-  res.json(product);
-});
+app.use(notFound);
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
