@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Product from '../components/Product';
-import { listProducts } from '../actions/productActions';
+
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-// import axios from 'axios';
+import { listProducts } from '../actions/productActions';
 import { useDispatch, useSelector } from 'react-redux';
+
+// import axios from 'axios';
+
 const HomeScreen = () => {
   // const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
+
   const productList = useSelector((state) => state.productList);
+
   const { loading, error, products } = productList;
+
   useEffect(() => {
     dispatch(listProducts());
     // const fetchProducts = async () => {
